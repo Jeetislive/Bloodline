@@ -7,13 +7,39 @@ import CautionBanner from "../components/cautionBanner";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
+  function setLoginCookie(id,email,role) {
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 7); // Cookie expires in 7 days
+    document.cookie = `id=${id}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+    if(email && role) {
+      document.cookie = `email=${encodeURIComponent(email)}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+      document.cookie = `role=${role}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+    } 
+}
+  
+  
   const registerApi = async (formData) => {
     try {
       const response = await axios.post("http://localhost:8000/api/auth/register", formData);
       // Display success message or handle the response appropriately
       if(response.status === 201) {
         alert("Registration Successful");
-        navigate("/donor-dashboard"); // Redirect to the login page
+        console.log("=========>",response);
+        
+        if(response.data.role === "requester") {
+          localStorage.setItem('auth', JSON.stringify(response.data.role));
+            // Call after successful login
+            setLoginCookie(response.data.id,response.data.email,response.data.role);
+          navigate("/requester-dashboard"); // Redirect to the home page
+        }
+        if(response.data.role === "donor") {
+          localStorage.setItem('auth', JSON.stringify(response.data.role));
+          setLoginCookie(response.data.role);
+          navigate("/donor-dashboard"); // Redirect to the home page
+        }
+        // navigate("/login"); // Redirect to the login page
+      }else{
+        alert("Registration failed. Please try again.");
       }
       console.log("Registration Successful.\n user Id:", response.data);
       // clear the registration form data

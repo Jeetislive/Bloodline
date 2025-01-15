@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/footer";
 import MapComponent from "../components/mapComponent";
 import AppFeatures from "../components/appFeatures";
+import TipsSection from "../components/tipSection";
 
 const DonorDashboard = () => {
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ const DonorDashboard = () => {
 
   const handleLogout = () => {
     // Perform logout actions if needed
+    document.cookie = "role=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    localStorage.removeItem("auth");
+
     navigate("/");
   };
 
@@ -39,12 +43,20 @@ const DonorDashboard = () => {
       {/* Header with Dashboard Title and Logout Button */}
       <div className="flex justify-between items-center px-6 py-4 bg-red-500 text-white">
         <h1 className="text-2xl font-bold">Donor Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-white text-red-500 px-4 py-2 rounded hover:bg-gray-100 transition"
-        >
-          Logout
-        </button>
+        <div>
+          <button
+            onClick={ handleLogout}
+            className="bg-white text-red-500 mr-5 px-1 py-2 rounded hover:bg-gray-100 transition"
+          >
+            🔔 Notifications
+          </button>
+          <button
+            onClick={handleLogout}
+            className="bg-white text-red-500 px-4 py-2 rounded hover:bg-gray-100 transition"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       <div className="h-8"></div>
@@ -102,7 +114,7 @@ const DonorDashboard = () => {
           </div>
         </div>
       </div>
-
+      <TipsSection />
       {/* Footer Section */}
       <Footer />
     </>

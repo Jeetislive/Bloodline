@@ -25,7 +25,20 @@ VALUES (?,?,?,?,?,?,?,?)`,
         );
         await conn.commit();
         console.log("Donor added successfully!");
-        return donor.insertId;
+        return {
+            id: donor.insertId,
+            name: name,
+            email: email,
+            phone: phone,
+            role: role,
+            state: state,
+            city: city,
+            address: address,
+            age: age,
+            bloodGroup: bloodGroup,
+            lastDonationDate: lastDonationDate,
+            totalDonations: previousDonations
+        };
     } catch (error) {
         await conn.rollback();
         console.error("Error adding user:", error);
@@ -48,7 +61,16 @@ VALUES (?,?,?,?,?,?,?,?)`,
         );
         await conn.commit();
         console.log("Requester added successfully!");
-        return result.insertId;
+        return {
+            id: result.insertId,
+            name: name,
+            email: email,
+            phone: phone,
+            role: role,
+            state: state,
+            city: city,
+            address: address
+        };
     }
     catch (error) {
         await conn.rollback();

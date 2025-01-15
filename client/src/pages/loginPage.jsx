@@ -21,6 +21,13 @@ const LoginPage = () => {
   const handleRoleSelect = (role) => {
     setFormData({ ...formData, role });
   };
+  function setLoginCookie(id,email,role) {
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 7); // Cookie expires in 7 days
+    document.cookie = `id=${id}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+    document.cookie = `email=${email}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+    document.cookie = `role=${role}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+}
 
   const registerApi = async (formData) => {
     try {
@@ -30,7 +37,19 @@ const LoginPage = () => {
       );
       if (response.status === 200) {
         alert("Login Successful");
-        navigate("/donor-dashboard"); // Redirect to the home page
+        console.log();
+        
+        if(response.data.role === "requester"){
+          console.log("=========>",response.data);
+          
+          localStorage.setItem('auth', JSON.stringify(response.data.role));
+          setLoginCookie(response.data.user_id,response.data.email,response.data.role);
+          navigate("/requester-dashboard"); // Redirect to the home page
+        }else {
+          localStorage.setItem('auth', JSON.stringify(response.data.role));
+          setLoginCookie(response.data.role);
+          navigate("/donor-dashboard"); // Redirect to the home page
+        }
       }
       console.log("Login Successful.", response.data);
     } catch (error) {

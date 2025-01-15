@@ -2,33 +2,25 @@
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import facility1 from "../assets/images/Facilities/picture 1.jpg"
+import facility2 from "../assets/images/Facilities/picture 2.jpg"
+import facility3 from "../assets/images/Facilities/picture 3.jpg"
+import facility4 from "../assets/images/Facilities/picture 4.jpg"
 
 const FacilitySlider = () => {
   // Hardcoded data for the facilities
   const facilities = [
     {
-      icon: "🏥",
-      title: "Blood Banks",
-      description: "Blood banks partnered with us.",
-      count: 20,
+      src: facility1
     },
     {
-      icon: "🩸",
-      title: "Active Donors",
-      description: "Donors available for emergencies.",
-      count: 500,
+      src: facility2
     },
     {
-      icon: "📦",
-      title: "Total Donations",
-      description: "Donations made through our platform.",
-      count: 3000,
+      src: facility3
     },
     {
-      icon: "❤️",
-      title: "Requests Fulfilled",
-      description: "Requests successfully fulfilled.",
-      count: 1200,
+      src: facility4
     },
   ];
 
@@ -49,22 +41,15 @@ const FacilitySlider = () => {
   };
 
   return (
-      <div className="w-screen ">
+      <div className="w-full">
         <Slider {...settings}>
           {facilities.map((facility, index) => (
             <div key={index} className="p-0">
-              <div className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-                <div className="text-6xl mb-4">{facility.icon}</div>
-                <h3 className="text-xl font-bold text-gray-700 mb-2">
-                  {facility.title}
-                </h3>
-                <p className="text-gray-500 text-sm mb-4">
-                  {facility.description}
-                </p>
-                <span className="text-blue-500 font-bold text-2xl">
-                  {facility.count}
-                </span>
-              </div>
+              <img
+                className="w-full h-96 shadow-lg"
+                src={facility.src}
+                alt=""
+              />
             </div>
           ))}
         </Slider>
