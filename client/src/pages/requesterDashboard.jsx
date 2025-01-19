@@ -22,8 +22,8 @@ const RequesterDashboard = () => {
   };
   const [showSidebar, setShowSidebar] = useState(false);
   const [notifications, setNotifications] = useState([
-    "New blood request received.",
-    "Donor John Doe has accepted your request.",
+    "Your blood request for O+ blood group is received by JEET PAL from Kolkata.",
+    "Your blood request for A+ blood group is Declined by JEET PAL.",
     "Your blood request has been fulfilled.",
   ]);
 

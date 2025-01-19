@@ -21,12 +21,13 @@ const LoginPage = () => {
   const handleRoleSelect = (role) => {
     setFormData({ ...formData, role });
   };
-  function setLoginCookie(id,email,role) {
+  function setLoginCookie(id,email,role,name) {
     const expires = new Date();
     expires.setDate(expires.getDate() + 7); // Cookie expires in 7 days
     document.cookie = `id=${id}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
     document.cookie = `email=${email}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
     document.cookie = `role=${role}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+    document.cookie = `name=${name}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
 }
 
   const registerApi = async (formData) => {
@@ -43,15 +44,21 @@ const LoginPage = () => {
           console.log("=========>",response.data);
           
           localStorage.setItem('auth', JSON.stringify(response.data.role));
-          setLoginCookie(response.data.user_id,response.data.email,response.data.role);
+          setLoginCookie(response.data.user_id,response.data.email,response.data.role,response.data.name);
           navigate("/requester-dashboard"); // Redirect to the home page
-        }else {
+        }else if(response.data.role === "donor") {
           localStorage.setItem('auth', JSON.stringify(response.data.role));
-          setLoginCookie(response.data.role);
+          setLoginCookie(response.data.user_id,response.data.email,response.data.role,response.data.name);
           navigate("/donor-dashboard"); // Redirect to the home page
-        }
+        }else if(response.data.role === "admin") {
+          localStorage.setItem('auth', JSON.stringify(response.data.role));
+          setLoginCookie(response.data.user_id,response.data.email,response.data.role,response.data.name);
+          navigate("/admin-dashboard"); // Redirect to the home page
       }
       console.log("Login Successful.", response.data);
+      } else {
+        alert("Login failed. Please try again.");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Login failed. Please try again.");
@@ -117,6 +124,16 @@ const LoginPage = () => {
                 onClick={() => handleRoleSelect("requester")}
               >
                 Requester
+              </button>
+              <button
+                className={`py-2 px-4 rounded-md font-semibold ${
+                  formData.role === "admin"
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-200 text-gray-700"
+                }`}
+                onClick={() => handleRoleSelect("admin")}
+              >
+                Admin
               </button>
             </div>
 

@@ -12,7 +12,7 @@ const RegistrationForm = () => {
     expires.setDate(expires.getDate() + 7); // Cookie expires in 7 days
     document.cookie = `id=${id}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
     if(email && role) {
-      document.cookie = `email=${encodeURIComponent(email)}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
+      document.cookie = `email=${email}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
       document.cookie = `role=${role}; expires=${expires.toUTCString()}; Secure; SameSite=Strict`;
     } 
 }
@@ -50,7 +50,7 @@ const RegistrationForm = () => {
     }
   }
   const handleFormSubmit = async(formData) => {
-    await registerApi(formData);
+    //await registerApi(formData);
     console.log("Form submitted:", formData);
     // Add your form submission logic here (e.g., send to the backend)
   };

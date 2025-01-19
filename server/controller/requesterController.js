@@ -5,6 +5,8 @@ import requesterService from "../service/requesterService.js";
 const addBloodRequest = async (req, res, next) => {
     try {
         const { name,email, id, bloodGroup,state, city, contact,status } = req.body;
+        // console.log(req.body);
+        
 
         // Validate input data
         if (!name || !email || !id || !bloodGroup || !city || !state || !contact) {
@@ -14,6 +16,8 @@ const addBloodRequest = async (req, res, next) => {
         bloodRequest.donors.forEach(async (donor) => {
             await sendNotificationEmail(donor.email, donor.name,bloodRequest.name, bloodRequest.bloodGroup,bloodRequest.contact);
         });
+        // console.log(bloodRequest);
+        
         await sendRequestSubmissionEmail(bloodRequest.email,bloodRequest.name, bloodRequest.donors);
         return res.status(201).json(bloodRequest);
     } catch (error) {

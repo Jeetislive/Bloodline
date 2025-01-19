@@ -1,5 +1,4 @@
-export const WELCOME_EMAIL_TEMPLATE = `
-<!DOCTYPE html>
+export const WELCOME_EMAIL_TEMPLATE = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,54 +6,99 @@ export const WELCOME_EMAIL_TEMPLATE = `
     <title>Welcome to BloodLine</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
         }
         .container {
             background-color: #ffffff;
             max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e5e5;
         }
         h1 {
-            color: #333;
+            color: #e63946;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
         }
         p {
-            line-height: 1.6;
-            color: #666;
+            line-height: 1.8;
+            color: #4a4a4a;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #e63946;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .cta-button:hover {
+            background-color: #d62839;
         }
         .footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 12px;
-            color: #999;
+            color: #888;
             text-align: center;
+            line-height: 1.6;
         }
         .footer a {
             color: #007BFF;
             text-decoration: none;
         }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .header-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-logo img {
+            max-width: 150px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="header-logo">
+            <img src="" alt="BloodLine Logo">
+        </div>
         <h1>Welcome to BloodLine, [User's Name]!</h1>
-        <p>We're excited to have you join our community at <strong>BloodLine</strong>. BloodLine is a platform dedicated to saving lives by facilitating seamless connections between blood recipients and donors, especially during critical emergencies. It ensures timely access to lifesaving resources while promoting a collaborative and efficient blood donation system.</p>
-        <p>We hope you have a great time with us. If you need any assistance, feel free to reach out to our support team. We're here to help you every step of the way!</p>
-        <p>Happy to have U!</p>
-        <p>Best Regards,<br>The BloodLine Team</p>
-        <p class="footer">
-            If you did not create this account, please ignore this email or <a href="[Support URL]">contact us</a> for assistance.
-            <br><br>
-            &copy; 2025 BloodLine. All rights reserved.
+        <p>
+            We're thrilled to have you join our community at <strong>BloodLine</strong>. Our platform is dedicated to saving lives by 
+            connecting blood donors and recipients, ensuring timely access to critical resources. Together, we can make a difference!
         </p>
+        <p>
+            Start exploring today and discover how you can contribute to this lifesaving mission. 
+            If you need assistance, our support team is here to help.
+        </p>
+        <a href="[Dashboard URL]" class="cta-button">Visit Your Dashboard</a>
+        <p>
+            Thank you for joining us on this meaningful journey.
+        </p>
+        <p>
+            Best Regards,<br>
+            The BloodLine Team
+        </p>
+        <div class="footer">
+            If you did not create this account, please <a href="[Support URL]">contact us</a> immediately.<br>
+            &copy; 2025 BloodLine. All rights reserved.
+        </div>
     </div>
 </body>
 </html>
-
 `;
 // export const PASSWORD_RESET_REQUEST_TEMPLATE = `
 // <!DOCTYPE html>

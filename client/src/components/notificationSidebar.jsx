@@ -1,4 +1,6 @@
 const NotificationSidebar = ({ notifications, onClose, handleResponse }) => {
+    console.log("Rendering NotificationSidebar...", notifications);
+    
     return (
       <div className="fixed right-0 top-24 w-1/3 h-fit bg-white shadow-lg z-50 p-4">
         <div className="flex justify-between items-center mb-4">
@@ -17,9 +19,7 @@ const NotificationSidebar = ({ notifications, onClose, handleResponse }) => {
               className="p-4 mb-4 border rounded-md shadow-md bg-gray-100"
             >
               <p className="text-gray-700">
-                <strong>{notification.requesterName}</strong> requested blood from{" "}
-                <strong>{notification.city}, {notification.state}</strong>. Are
-                you able to donate?
+                {notification}
               </p>
               <div className="flex gap-4 mt-4">
                 <button

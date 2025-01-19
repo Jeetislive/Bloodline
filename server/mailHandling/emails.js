@@ -67,11 +67,13 @@ export const sendRequestSubmissionEmail = async (email,name, donors) => {
             pass: process.env.PASSWORD
         }
     });
+    // console.log(name);
+    
     const mailOptions = {
         from: `"${organizationName}" <${process.env.EMAIL}>`,
         to: email,
         subject: "Blood Request Submission",
-        html: Request_Submission_Email_Template.replace("[Requester Name]", name).replace("[Donor 1]", donors[1].name).replace("[phone 1]", donors[1].phone).replace("[BloodLine Website URL]", url)
+        html: Request_Submission_Email_Template.replace("[Requester Name]", name).replace("[Donor 1]", donors[0].name).replace("[phone 1]", donors[0].phone).replace("[BloodLine Website URL]", url)
     };
     transporter.sendMail(mailOptions, (error,info) => {
         if(error) {

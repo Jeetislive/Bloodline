@@ -9,6 +9,12 @@ import DonorDashboard from './pages/donorDashboard';
 import RequesterDashboard from './pages/requesterDashboard';
 import GuestRoute from './routes/guestsRoute';
 import Founder from './pages/founder';
+import AdminDashboard from './pages/adminDashboard';
+import ManageUsers from './pages/manageUserPage';
+import ManageRequests from './pages/manageRequestPage';
+import ManageDonations from './pages/manageDonationPage';
+import ManageBloodBanks from './pages/manageBloodBankPage';
+import ManageTransactions from './pages/manageTransactionPage';
 
 function App() {
   return (
@@ -27,6 +33,12 @@ function App() {
       <Route path='/login' element={<LoginPage />} />
       <Route path='/donor-dashboard' element={<DonorDashboard />} />
       <Route path='/requester-dashboard' element={<RequesterDashboard />} />
+      <Route path="/admin-dashboard" element={<AdminDashboard />} />
+      <Route path="/manage-users" element={<ManageUsers />} />
+        <Route path="/manage-requests" element={<ManageRequests />} />
+        <Route path="/manage-donations" element={<ManageDonations />} />
+        <Route path="/manage-blood-banks" element={<ManageBloodBanks />} />
+        <Route path="/transactions" element={<ManageTransactions />} />
     </Routes>
   </BrowserRouter>
   );

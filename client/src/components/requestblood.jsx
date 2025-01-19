@@ -94,7 +94,7 @@ const RequestBloodSection = () => {
           city: "",
           status: "pending",
         });
-        navigate("/requester-dashboard");
+        
       })
       .catch((error) => {
         console.error("Error submitting request:", error);
