@@ -1,4 +1,5 @@
 // import React from "react";
+import { Link } from "react-router-dom";
 import donationFact from "../assets/images/donationFact.webp";
 
 const DonationInfo = () => {
@@ -65,12 +66,12 @@ const DonationInfo = () => {
       </p>
       {/* Donate Now Button */}
       <div className="text-center mt-4">
-        <a
-          href="#donate"
+        <Link
+          to="/login"
           className="bg-red-500 text-white px-6 py-2 rounded shadow hover:bg-red-600 transition"
         >
           Donate Now
-        </a>
+        </Link>
       </div>
     </section>
   );

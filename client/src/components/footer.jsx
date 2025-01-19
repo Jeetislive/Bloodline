@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import facebookImage from "../assets/avatars/facebook.png"
+import tweeterImage from "../assets/avatars/tweeter.png"
+import instagramImage from "../assets/avatars/instagram.jpg"
+import linkedinImage from "../assets/avatars/linkedin.png"
 
 const FooterSection = () => {
   return (
@@ -61,25 +65,37 @@ const FooterSection = () => {
                 href="#"
                 className="text-gray-300 hover:text-blue-500 transition"
               >
-                <i className="fab fa-facebook fa-lg"></i>
+                <img
+                  src={facebookImage}
+                  alt="Facebook"
+                 className="fab h-6 rounded-lg fa-facebook fa-lg"></img>
               </a>
               <a
                 href="#"
                 className="text-gray-300 hover:text-blue-400 transition"
               >
-                <i className="fab fa-twitter fa-lg"></i>
+                <img
+                  src={tweeterImage}
+                  alt="Facebook"
+                 className="fab h-6 rounded-lg fa-facebook fa-lg"></img>
               </a>
               <a
                 href="#"
                 className="text-gray-300 hover:text-pink-500 transition"
               >
-                <i className="fab fa-instagram fa-lg"></i>
+                <img
+                  src={instagramImage}
+                  alt="Facebook"
+                 className="fab h-6 rounded-lg fa-facebook fa-lg"></img>
               </a>
               <a
                 href="#"
                 className="text-gray-300 hover:text-blue-700 transition"
               >
-                <i className="fab fa-linkedin fa-lg"></i>
+                <img
+                  src={linkedinImage}
+                  alt="Facebook"
+                 className="fab h-6 rounded-lg fa-facebook fa-lg"></img>
               </a>
             </div>
           </div>

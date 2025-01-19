@@ -15,7 +15,7 @@ const register = async (req, res, next) => {
             const donor = await authService.addDonor(name, age, bloodGroup, city, email, password,  lastDonationDate, role, state, address, phone, previousDonations);
             // console.log(donor);
             
-            if(isNaN(donor)) {
+            if(isNaN(donor.id)) {
                 return res.status(401).json({message: 'User already exists'});
             }
             await sendWelcomeEmail(email, name);

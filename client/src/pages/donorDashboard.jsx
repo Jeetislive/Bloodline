@@ -3,10 +3,27 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/footer";
 import MapComponent from "../components/mapComponent";
 import AppFeatures from "../components/appFeatures";
+import TipsSection from "../components/tipSection";
+import NotificationSidebar from "../components/notificationSidebar";
 
 const DonorDashboard = () => {
   const navigate = useNavigate();
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [notifications, setNotifications] = useState([
+    
+    "You have a blood request of O+ blood group from JEET PAL. Accept it?",
+    "You have a blood request of B+ blood group from Ankan Biswas. Accept it?",
+    "Arif Islam declined for donation of blood group B+.",
+  ]);
   const [donationHistory, setDonationHistory] = useState([]);
+  const handleNotifications = () => {
+    setShowSidebar((prevState) => !prevState);
+  };
+
+  const handleResponse = (index, response) => {
+    console.log(`Donor response to notification #${index + 1}: ${response}`);
+    setNotifications((prev) => prev.filter((_, i) => i !== index));
+  };
 
   useEffect(() => {
     // Mock donor's previous blood donation history
@@ -31,6 +48,9 @@ const DonorDashboard = () => {
 
   const handleLogout = () => {
     // Perform logout actions if needed
+    document.cookie = "role=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    localStorage.removeItem("auth");
+
     navigate("/");
   };
 
@@ -39,13 +59,32 @@ const DonorDashboard = () => {
       {/* Header with Dashboard Title and Logout Button */}
       <div className="flex justify-between items-center px-6 py-4 bg-red-500 text-white">
         <h1 className="text-2xl font-bold">Donor Dashboard</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-white text-red-500 px-4 py-2 rounded hover:bg-gray-100 transition"
-        >
-          Logout
-        </button>
+        <div>
+          <button
+            onClick={ handleNotifications}
+            className="bg-white text-red-500 mr-5 px-1 py-2 rounded hover:bg-gray-100 transition"
+          >
+            🔔 Notifications
+          </button>
+          <button
+            onClick={handleLogout}
+            className="bg-white text-red-500 px-4 py-2 rounded hover:bg-gray-100 transition"
+          >
+            Logout
+          </button>
+        </div>
       </div>
+      {/* Notification Sidebar */}
+      {showSidebar && (
+        <NotificationSidebar
+          notifications={notifications}
+          onClose={() => {
+            console.log("Closing notification sidebar...");
+            setShowSidebar(false);
+          }}
+          handleResponse={handleResponse}
+        />
+      )}
 
       <div className="h-8"></div>
 
@@ -102,7 +141,7 @@ const DonorDashboard = () => {
           </div>
         </div>
       </div>
-
+      <TipsSection />
       {/* Footer Section */}
       <Footer />
     </>
