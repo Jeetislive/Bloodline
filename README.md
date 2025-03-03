@@ -44,4 +44,4 @@
 |-------------------|-----------------------|----------------|------------------------|
 | React, Tailwind css| Node.js, Express.js  |          MySQL | Socket.io, Google Maps |
 
-Other tools include **Axios**, **bcrypt.js**, **JWT**, **Nodemailer**.
+Other tools include **Axios**, **bcrypt.js**, **JWT**, **Nodemailer**. 
